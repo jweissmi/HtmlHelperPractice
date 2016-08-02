@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using HtmlHelperPractice.Models;
 
 namespace HtmlHelperPractice.Controllers
 {
@@ -15,7 +16,7 @@ namespace HtmlHelperPractice.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Your Application Description Page.";
 
             return View();
         }
@@ -24,7 +25,14 @@ namespace HtmlHelperPractice.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
-            return View();
+            return View(ContactInfo.GetContactInfo());
+        }
+
+        public ActionResult ContactList()
+        {
+            ViewBag.Message = "Your Contact List Page.";
+
+            return View(ContactInfo.GetContactList());
         }
     }
 }

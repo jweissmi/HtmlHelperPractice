@@ -1,17 +1,71 @@
-﻿@{
-    ViewBag.Title = "Contact";
+﻿@model HtmlHelperPractice.Models.ContactInfo
+
+@{
+    ViewBag.Title = "Contact Information";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+<h2>Contact Information</h2>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+@using (Html.BeginForm())
+{
+    <div>
+        @Html.Hidden("hiddenId", Model.Id)
+    </div>
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+    <br />
+
+    <div>
+        @Html.Label("lblName", "Name", new { id = "lblName", @class = "labels"})
+    </div>
+
+    <div>@Html.TextBox("txtName", Model.Name, new { @class = "form-control" })</div>
+
+    <br />
+    <div>
+        @Html.Label("lblEmail", "Email", new { id = "lblEmail" })
+    </div>
+
+    <div>
+        @Html.TextBox("txtEmail", Model.Email, new { @class = "form-control" })
+    </div>
+
+    <br />
+    <div>
+        @Html.Label("lblPhone", "Phone Number", new { id = "lblPhone", @class = "labels" })
+    </div>
+
+    <div>
+        @Html.TextBox("txtPhone", Model.PhoneNumber, new { @class = "form-control" })
+    </div>
+
+    <br />
+    <div>
+        @Html.Label("lblDetails", "Details", new { id = "lblDetails", @class = "labels" })
+    </div>
+
+    <div>
+        @Html.TextArea("txtAreaDetails", Model.Details, new { @class = "form-control" })
+    </div>
+
+    <br />
+    <div>
+        @Html.Label("lblPassword", "Password", new { id = "lblPassword", @class = "labels" })
+    </div>
+
+    <div>
+        @Html.Password("pass", Model.Password, new { @class = "form-control" })
+    </div>
+
+    <br />
+    <div>
+        @Html.Label("lblSendEmail", "Send Email", new { id = "lblSendEmail", @class = "labels" })
+        @Html.CheckBox("chkBoxSendEmail", Model.SendEmail)
+    </div>
+
+    <br />
+    <div>
+        @Html.Label("lblGender", "Gender")
+        <br />
+        @Html.Label("lblMale", "Male")@Html.RadioButton("radioGender", Model.Gender, Model.Gender == "Male")
+        @Html.Label("lblFemale", "Female")@Html.RadioButton("radioGender", Model.Gender, Model.Gender == "Female")
+    </div>
+}
